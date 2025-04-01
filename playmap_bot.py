@@ -1,15 +1,13 @@
-
+import os
 import logging
 from telegram import Update, KeyboardButton, ReplyKeyboardMarkup
 from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, ContextTypes, filters
 
-# Увімкнення логів
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     level=logging.INFO
 )
 
-# Обробник команди /start
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     buttons = [
         [KeyboardButton("🔍 Знайти локацію поблизу")],
@@ -22,15 +20,9 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         reply_markup=reply_markup
     )
 
-# Головна функція запуску бота
 def main():
-    # Встав свій токен, отриманий у @BotFather
-    import os
-application = ApplicationBuilder().token(os.getenv("BOT_TOKEN")).build()
-
+    application = ApplicationBuilder().token(os.getenv("BOT_TOKEN")).build()
     application.add_handler(CommandHandler("start", start))
-
-    print("Бот працює. Запусти його через main().")
     application.run_polling()
 
 if __name__ == '__main__':
