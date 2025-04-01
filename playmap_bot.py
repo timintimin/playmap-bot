@@ -25,7 +25,8 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 # Головна функція запуску бота
 def main():
     # Встав свій токен, отриманий у @BotFather
-    application = ApplicationBuilder().token("7662179243:AAG_qeFPmiX_Nipg-nCOudGKGlW4uajmdrA").build()
+    import os
+application = ApplicationBuilder().token(os.getenv("BOT_TOKEN")).build()
 
     application.add_handler(CommandHandler("start", start))
 
